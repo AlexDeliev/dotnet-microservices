@@ -2,4 +2,5 @@
 /Play.Catalog/.vscode
 
 # Ignore Service bin and obj folders
-/src/Play.Catalog.Service/bin/Debug/
+/src/Play.Catalog.Service/bin/
+/src/Play.Catalog.Service/obj/
