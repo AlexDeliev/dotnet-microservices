@@ -1,2 +1,5 @@
 # Ignore Visual Studio Code folder
 /Play.Catalog/.vscode
+
+# Ignore Service bin and obj folders
+/src/Play.Catalog.Service/bin/Debug/
