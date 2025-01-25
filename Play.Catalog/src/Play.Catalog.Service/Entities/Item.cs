@@ -1,13 +1,12 @@
 using System;
-using MongoDB.Bson;
-using MongoDB.Bson.Serialization.Attributes;
+
 
 namespace Play.Catalog.Service.Entities
 {
     public class Item
     {
         // The Id property is a Guid type, which is a unique identifier for each item.
-        [BsonRepresentation(BsonType.String)]
+        
         public Guid Id { get; set; }
         // The Name property is a string type, which is the name of the item.
         public string Name { get; set; }
