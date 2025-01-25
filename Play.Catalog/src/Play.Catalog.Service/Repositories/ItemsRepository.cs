@@ -15,11 +15,9 @@ namespace Play.Catalog.Service.Repositories
 
         private readonly FilterDefinitionBuilder<Item> filterBuilder = Builders<Item>.Filter;
 
-        // The ItemsRepository constructor initializes the MongoDB client and database, and gets the items collection.
-        public ItemsRepository()
+        // The constructor initializes the items collection in the MongoDB database.
+        public ItemsRepository(IMongoDatabase database)
         {
-            var mongoClient = new MongoClient("mongodb://localhost:27017");
-            var database = mongoClient.GetDatabase("Catalog");
             dbCollection = database.GetCollection<Item>(collectionName);
         }
 

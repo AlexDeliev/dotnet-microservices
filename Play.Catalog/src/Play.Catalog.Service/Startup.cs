@@ -14,11 +14,18 @@ using Microsoft.OpenApi.Models;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Serializers;
+using MongoDB.Driver;
+using Play.Catalog.Service.Settings;
+using Play.Catalog.Service.Dtos;
+using Play.Catalog.Service.Entities;
 
 namespace Play.Catalog.Service
 {
     public class Startup
     {
+        private ServiceSettings serviceSettings;
+
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -34,6 +41,15 @@ namespace Play.Catalog.Service
             // Register the DateTimeOffsetSerializer with the BsonSerializer.
             BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
             
+            serviceSettings = Configuration.GetSection(nameof(ServiceSettings)).Get<ServiceSettings>();
+
+            services.AddSingleton(ServiceProvider => 
+            {
+                var mongoDbSettings = Configuration.GetSection(nameof(MongoDbSettings)).Get<MongoDbSettings>();
+                var mongoClient = new MongoClient(mongoDbSettings.ConnectionString);
+                return mongoClient.GetDatabase(serviceSettings.ServiceName);
+            });
+
             services.AddControllers(options =>
             {
                 options.SuppressAsyncSuffixInActionNames = false;

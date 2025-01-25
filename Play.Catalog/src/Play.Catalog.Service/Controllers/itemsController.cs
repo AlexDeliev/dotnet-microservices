@@ -14,12 +14,19 @@ namespace Play.Catalog.Service.Controllers
     public class ItemsController : ControllerBase
     {
         // In-memory list of items
-        private readonly ItemsRepository itemsRepository = new();
+        private readonly IItemsRepository itemsRepository;
+
+        // Constructor to inject the repository into the controller
+        public ItemsController(IItemsRepository itemsRepository)
+        {
+            this.itemsRepository = itemsRepository;
+        }
 
         // GET /items
         [HttpGet]
         public async Task<IEnumerable<ItemDto>> GetAsync()
         {
+            // Get all items from the repository
             var items = (await itemsRepository.GetAllAsync())
                 .Select(item => item.AsDto());
             return items;
