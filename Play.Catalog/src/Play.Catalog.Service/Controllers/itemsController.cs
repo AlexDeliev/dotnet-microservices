@@ -16,7 +16,7 @@ namespace Play.Catalog.Service.Controllers
         // In-memory list of items
         private readonly ItemsRepository itemsRepository = new();
 
-
+        // GET /items
         [HttpGet]
         public async Task<IEnumerable<ItemDto>> GetAsync()
         {
@@ -41,6 +41,7 @@ namespace Play.Catalog.Service.Controllers
         [HttpPost]
         public async Task<ActionResult<ItemDto>> PostAsync(CreateItemDto createItemDto)
         {
+            // Create a new item
             var item = new Item
             {
                 Name = createItemDto.Name,
@@ -57,6 +58,7 @@ namespace Play.Catalog.Service.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutAsync(Guid id, UpdateItemDto updateItemDto)
         {
+            // Get the item by id
             var existingItem = await itemsRepository.GetAsync(id);
 
             // If item does not exist, return 404
@@ -79,6 +81,7 @@ namespace Play.Catalog.Service.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsync(Guid id)
         {
+            // Get the item by id to check if it exists or not before deleting
             var item = await itemsRepository.GetAsync(id);
 
             // If item does not exist, return 404
