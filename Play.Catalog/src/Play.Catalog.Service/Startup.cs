@@ -31,7 +31,9 @@ namespace Play.Catalog.Service
         {
             // Register the GuidSerializer with the BsonSerializer.
             BsonSerializer.RegisterSerializer(new GuidSerializer(BsonType.String));
-
+            // Register the DateTimeOffsetSerializer with the BsonSerializer.
+            BsonSerializer.RegisterSerializer(new DateTimeOffsetSerializer(BsonType.String));
+            
             services.AddControllers(options =>
             {
                 options.SuppressAsyncSuffixInActionNames = false;
