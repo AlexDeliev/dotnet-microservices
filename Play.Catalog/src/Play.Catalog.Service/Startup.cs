@@ -53,8 +53,12 @@ namespace Play.Catalog.Service
                 return mongoClient.GetDatabase(serviceSettings.ServiceName);
             });
 
-            // Register the ItemsRepository with the services collection.
-            services.AddSingleton<IItemsRepository, ItemsRepository>();
+            // Register the IRepository<Item> with the services collection.
+            services.AddSingleton<IRepository<Item>>(ServiceProvider =>
+            {
+                var database = ServiceProvider.GetService<IMongoDatabase>();
+                return new MongoRepository<Item>(database, "items");
+            });
 
             services.AddControllers(options =>
             {

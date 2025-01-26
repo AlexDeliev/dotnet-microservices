@@ -14,10 +14,10 @@ namespace Play.Catalog.Service.Controllers
     public class ItemsController : ControllerBase
     {
         // In-memory list of items
-        private readonly IItemsRepository itemsRepository;
+        private readonly IRepository<Item> itemsRepository;
 
         // Constructor to inject the repository into the controller
-        public ItemsController(IItemsRepository itemsRepository)
+        public ItemsController(IRepository<Item> itemsRepository)
         {
             this.itemsRepository = itemsRepository;
         }
