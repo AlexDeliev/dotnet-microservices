@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "mXUfIEUe+ieq8qKwCRXflj0JJBc8zfW3xATR83+oyIENiOEpB4oQc/QlP9yDDKUBzlY5ZlBDng0lQ7bncBrocA==",
+  "dgSpecHash": "EDS/dJhcpG3ATXnGYAMo7GBnRnjkwhPTS0a0zHLQNEVE4R+FWUcrgT14yO8zmjmiEeGm6sBn6C0mi+uJ5m8q/Q==",
   "success": true,
   "projectFilePath": "C:\\Users\\AlexD\\dotnet-microservices\\Play.Common\\src\\Play.Common\\Play.Common.csproj",
   "expectedPackageFiles": [

@@ -1990,7 +1990,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.0.1",
+    "version": "1.0.2",
     "restore": {
       "projectUniqueName": "C:\\Users\\AlexD\\dotnet-microservices\\Play.Common\\src\\Play.Common\\Play.Common.csproj",
       "projectName": "Play.Common",
