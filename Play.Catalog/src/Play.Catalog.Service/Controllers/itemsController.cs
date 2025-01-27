@@ -16,6 +16,8 @@ namespace Play.Catalog.Service.Controllers
         // In-memory list of items
         private readonly IRepository<Item> itemsRepository;
 
+        private static int requestCounter = 0;
+
         // Constructor to inject the repository into the controller
         public ItemsController(IRepository<Item> itemsRepository)
         {
@@ -24,12 +26,29 @@ namespace Play.Catalog.Service.Controllers
 
         // GET /items
         [HttpGet]
-        public async Task<IEnumerable<ItemDto>> GetAsync()
+        public async Task<ActionResult<IEnumerable<ItemDto>>> GetAsync()
         {
+            requestCounter++;
+            Console.WriteLine($"Request counter: {requestCounter}: Starting...");
+
+            // Simulate a delay
+            if (requestCounter <= 2)
+            {
+                Console.WriteLine($"Request counter: {requestCounter}: Simulating a delay...");
+                await Task.Delay(TimeSpan.FromSeconds(10));
+            }
+            if (requestCounter <= 4)
+            {
+                Console.WriteLine($"Request counter: {requestCounter}: 500 (Internal Server Error).");
+                return StatusCode(500);
+            }
+
             // Get all items from the repository
             var items = (await itemsRepository.GetAllAsync())
                 .Select(item => item.AsDto());
-            return items;
+            
+            Console.WriteLine($"Request counter: {requestCounter}: 200 (OK).");
+            return Ok(items);
         }
 
         // GET /items/{id}
