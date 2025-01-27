@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -5,6 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Play.Common.MongoDB;
+using Play.Inventory.Service.Clients;
 using Play.Inventory.Service.Entities;
 
 namespace Play.Inventory.Service
@@ -21,10 +23,15 @@ namespace Play.Inventory.Service
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Register the MongoDB repository
             services.AddMongo()
                     .AddMongoRepository<InventoryItem>("inventoryItems");
 
-            
+            // Register the CatalogClient as a typed HTTP client
+            services.AddHttpClient<CatalogClient>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:5001");
+            });
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
