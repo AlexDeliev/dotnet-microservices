@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "AAg1fvS+SEz4yo8obUqNCoUsryGCsJtO7KCWvBBLUg/wyOPPW0ugM/3O4YzzTdh27a9AyQLQ7cfFT974jWqgWQ==",
+  "dgSpecHash": "iVpiI74Z8sNTtWIF4COaDmpfA306SCJKCUExU8szoOHf6tSvr2QOPFNMLv3QpgAu4qVpMSZU2R64C62nuePnYQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\AlexD\\dotnet-microservices\\Play.Catalog\\src\\Play.Catalog.Service\\Play.Catalog.Service.csproj",
   "expectedPackageFiles": [
@@ -30,7 +30,8 @@
     "C:\\Users\\AlexD\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\AlexD\\.nuget\\packages\\system.security.accesscontrol\\5.0.0\\system.security.accesscontrol.5.0.0.nupkg.sha512",
     "C:\\Users\\AlexD\\.nuget\\packages\\system.security.principal.windows\\5.0.0\\system.security.principal.windows.5.0.0.nupkg.sha512",
-    "C:\\Users\\AlexD\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512"
+    "C:\\Users\\AlexD\\.nuget\\packages\\zstdsharp.port\\0.7.3\\zstdsharp.port.0.7.3.nupkg.sha512",
+    "C:\\Users\\AlexD\\.nuget\\packages\\play.catalog.contracts\\1.0.0\\play.catalog.contracts.1.0.0.nupkg.sha512"
   ],
   "logs": []
 }

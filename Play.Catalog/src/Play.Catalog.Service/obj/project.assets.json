@@ -354,6 +354,16 @@
         "runtime": {
           "lib/net5.0/ZstdSharp.dll": {}
         }
+      },
+      "Play.Catalog.Contracts/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Play.Catalog.Contracts.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Play.Catalog.Contracts.dll": {}
+        }
       }
     }
   },
@@ -1030,10 +1040,16 @@
         "zstdsharp.port.0.7.3.nupkg.sha512",
         "zstdsharp.port.nuspec"
       ]
+    },
+    "Play.Catalog.Contracts/1.0.0": {
+      "type": "project",
+      "path": "../Play.Catalog.Contracts/Play.Catalog.Contracts.csproj",
+      "msbuildProject": "../Play.Catalog.Contracts/Play.Catalog.Contracts.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Play.Catalog.Contracts >= 1.0.0",
       "Play.Common >= 1.0.0",
       "Swashbuckle.AspNetCore >= 5.6.3"
     ]
@@ -1071,7 +1087,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\Users\\AlexD\\dotnet-microservices\\Play.Catalog\\src\\Play.Catalog.Contracts\\Play.Catalog.Contracts.csproj": {
+              "projectPath": "C:\\Users\\AlexD\\dotnet-microservices\\Play.Catalog\\src\\Play.Catalog.Contracts\\Play.Catalog.Contracts.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
