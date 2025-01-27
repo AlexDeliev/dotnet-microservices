@@ -7,10 +7,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Play.Catalog.Service.Entities;
-using Play.Catalog.Service.Settings;
 using Play.Common.MongoDB;
 using Play.Common.Settings;
-
+using Play.Common.MassTransit;
 
 namespace Play.Catalog.Service
 {
@@ -34,25 +33,9 @@ namespace Play.Catalog.Service
 
             // Register the GuidSerializer with the BsonSerializer.
             services.AddMongo()
-                .AddMongoRepository<Item>("items");
-            // Register the MassTransit services.
-            services.AddMassTransit(x =>
-            {
-                x.UsingRabbitMq((context, configurator) =>
-                {
-                    var rabbitMqSettings = Configuration.GetSection(nameof(RabbitMQSettings)).Get<RabbitMQSettings>();
-                    configurator.Host(rabbitMqSettings.HostName);
-                    configurator.ConfigureEndpoints(context, new KebabCaseEndpointNameFormatter(serviceSettings.ServiceName, false));
-                });
-            });
-            // Configure the MassTransitHostOptions.
-            services.Configure<MassTransitHostOptions>(options =>
-            {
-                options.WaitUntilStarted = true;
-                options.StartTimeout = TimeSpan.FromSeconds(30);
-                options.StopTimeout = TimeSpan.FromMinutes(1);
-            });
-            
+                .AddMongoRepository<Item>("items")
+                .AddMassTransitWithRabbitMq();
+          
             services.AddControllers(options =>
             {
                 options.SuppressAsyncSuffixInActionNames = false;

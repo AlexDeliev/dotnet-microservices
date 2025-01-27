@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5/TNLlPvK9UZPNNKWPeizrxql7cm/QMoXeIhaDxmKK+Q3PoU7ENbs/XzWNyJrhGz7iTbQUQUwBBkOjaZkVcpRQ==",
+  "dgSpecHash": "ESND4O5pV8SZOb0Gv9ZFw1SnJPsaLVZ/j68+UDNkm7hb6tadvI13leOFJjAsKuVARvtjEbfIOZv48tgcWKdKww==",
   "success": true,
   "projectFilePath": "C:\\Users\\AlexD\\dotnet-microservices\\Play.Catalog\\src\\Play.Catalog.Service\\Play.Catalog.Service.csproj",
   "expectedPackageFiles": [
@@ -30,7 +30,7 @@
     "C:\\Users\\AlexD\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\AlexD\\.nuget\\packages\\mongodb.bson\\3.1.0\\mongodb.bson.3.1.0.nupkg.sha512",
     "C:\\Users\\AlexD\\.nuget\\packages\\mongodb.driver\\3.1.0\\mongodb.driver.3.1.0.nupkg.sha512",
-    "C:\\Users\\AlexD\\.nuget\\packages\\play.common\\1.0.0\\play.common.1.0.0.nupkg.sha512",
+    "C:\\Users\\AlexD\\.nuget\\packages\\play.common\\1.0.1\\play.common.1.0.1.nupkg.sha512",
     "C:\\Users\\AlexD\\.nuget\\packages\\rabbitmq.client\\7.0.0\\rabbitmq.client.7.0.0.nupkg.sha512",
     "C:\\Users\\AlexD\\.nuget\\packages\\sharpcompress\\0.30.1\\sharpcompress.0.30.1.nupkg.sha512",
     "C:\\Users\\AlexD\\.nuget\\packages\\snappier\\1.0.0\\snappier.1.0.0.nupkg.sha512",

@@ -4,13 +4,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    
-    <PackageReference Include="MassTransit.AspNetCore" Version="7.3.1" />
-    
-    <PackageReference Include="MassTransit.RabbitMQ" Version="8.3.4" />
-    
-    <PackageReference Include="Play.Common" Version="1.0.0" /> 
+  <ItemGroup> 
+    <PackageReference Include="Play.Common" Version="1.0.1" /> 
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
