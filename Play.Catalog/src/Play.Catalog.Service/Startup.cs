@@ -15,9 +15,12 @@ namespace Play.Catalog.Service
 {
     public class Startup
     {
+        // AllowedOriginSetting field to store the AllowedOrigin setting.
+        private const string AllowedOriginSetting = "AllowedOrigin";
+        // ServiceSettings field to store the ServiceSettings object.
         private ServiceSettings serviceSettings;
 
-
+        // Constructor that takes an IConfiguration object.
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -49,11 +52,20 @@ namespace Play.Catalog.Service
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            // Get the AllowedOrigin setting from the ServiceSettings object.
             if (env.IsDevelopment())
             {
-                app.UseDeveloperExceptionPage();
+                app.UseDeveloperExceptionPage();// If the environment is Development, use the DeveloperExceptionPage.
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Play.Catalog.Service v1"));
+                // If the environment is Development, use the SwaggerUI middleware to serve the Swagger UI.
+                var allowedOrigin = Configuration[AllowedOriginSetting];
+                app.UseCors(builder =>
+                {
+                    builder.WithOrigins(Configuration[AllowedOriginSetting])
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
             }
 
             app.UseHttpsRedirection();

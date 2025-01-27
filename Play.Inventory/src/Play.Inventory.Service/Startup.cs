@@ -18,6 +18,9 @@ namespace Play.Inventory.Service
 {
     public class Startup
     {
+        // AllowedOriginSetting field to store the AllowedOrigin setting.
+        private const string AllowedOriginSetting = "AllowedOrigin";
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
@@ -52,6 +55,15 @@ namespace Play.Inventory.Service
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Play.Inventory.Service v1"));
+            
+                // Add the AllowedOrigin setting to the CORS policy
+                var allowedOrigin = Configuration[AllowedOriginSetting];
+                    app.UseCors(builder =>
+                    {
+                        builder.WithOrigins(Configuration[AllowedOriginSetting])
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
             }
 
             app.UseHttpsRedirection();

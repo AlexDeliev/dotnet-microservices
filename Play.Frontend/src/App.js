@@ -13,6 +13,7 @@ export default class App extends Component {
 
   render() {
     return (
+      // Layout component is used to define the structure of the application
       <Layout>
         <Route exact path='/' component={Home} />
         <Route path={ApplicationPaths.CatalogPath} component={Catalog} />

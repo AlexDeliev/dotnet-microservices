@@ -69,7 +69,7 @@ export class Catalog extends Component
         });
     }
   }
-
+  // render items table with the given items
   renderItemsTable(items)
   {
     return <Container style={{ paddingTop: "10px", paddingLeft: "0px" }}>
