@@ -2,10 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MassTransit;
 using Microsoft.AspNetCore.Mvc;
 using Play.Catalog.Service.Dtos;
 using Play.Catalog.Service.Entities;
 using Play.Common;
+using Play.Catalog.Contracts;
 
 namespace Play.Catalog.Service.Controllers
 {
@@ -15,39 +17,23 @@ namespace Play.Catalog.Service.Controllers
     {
         // In-memory list of items
         private readonly IRepository<Item> itemsRepository;
+        private readonly IPublishEndpoint publishEndpoint;
 
-        private static int requestCounter = 0;
-
-        // Constructor to inject the repository into the controller
-        public ItemsController(IRepository<Item> itemsRepository)
+        // Constructor to initialize the repository
+        public ItemsController(IRepository<Item> itemsRepository, IPublishEndpoint publishEndpoint)
         {
             this.itemsRepository = itemsRepository;
+            this.publishEndpoint = publishEndpoint;
         }
 
         // GET /items
         [HttpGet]
         public async Task<ActionResult<IEnumerable<ItemDto>>> GetAsync()
         {
-            requestCounter++;
-            Console.WriteLine($"Request counter: {requestCounter}: Starting...");
-
-            // Simulate a delay
-            if (requestCounter <= 2)
-            {
-                Console.WriteLine($"Request counter: {requestCounter}: Simulating a delay...");
-                await Task.Delay(TimeSpan.FromSeconds(10));
-            }
-            if (requestCounter <= 4)
-            {
-                Console.WriteLine($"Request counter: {requestCounter}: 500 (Internal Server Error).");
-                return StatusCode(500);
-            }
-
             // Get all items from the repository
             var items = (await itemsRepository.GetAllAsync())
                 .Select(item => item.AsDto());
             
-            Console.WriteLine($"Request counter: {requestCounter}: 200 (OK).");
             return Ok(items);
         }
 
@@ -77,6 +63,9 @@ namespace Play.Catalog.Service.Controllers
             };
             await itemsRepository.CreateAsync(item);
 
+            // Publish the event to the message broker
+            await publishEndpoint.Publish(new CatalogItemCreated(item.Id, item.Name, item.Description));
+
             return CreatedAtAction(nameof(GetAsync), new { id = item.Id }, item);
         }
 
@@ -100,6 +89,9 @@ namespace Play.Catalog.Service.Controllers
 
             await itemsRepository.UpdateAsync(existingItem);
 
+            // Publish the event to the message broker to notify other services
+            await publishEndpoint.Publish(new CatalogItemUpdated(existingItem.Id, existingItem.Name, existingItem.Description));
+
             return NoContent();
         }
 
@@ -117,6 +109,9 @@ namespace Play.Catalog.Service.Controllers
             }
 
             await itemsRepository.RemoveAsync(item.Id);
+
+            // Publish the event to the message broker to notify other services that the item has been deleted
+            await publishEndpoint.Publish(new CatalogItemDeleted(id));
 
             return NoContent();
         }
