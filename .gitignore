@@ -1,12 +1,1 @@
-# Ignore Visual Studio Code folder
-/Play.Catalog/.vscode
 
-# Ignore Service bin and obj folders
-/src/Play.Catalog.Service/bin/
-/src/Play.Catalog.Service/obj/
-
-# Ignore .NET build output directories
-src/Play.Catalog.Service/bin/Debug
-
-# Ignore build output directories
-src/Play.Catalog.Service/bin/Debug/net5.0/
