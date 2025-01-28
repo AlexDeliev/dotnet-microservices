@@ -9,6 +9,7 @@ Play Economy is a comprehensive microservices-based application designed to mana
 - **Asynchronous Communication**: RabbitMQ with MassTransit for message-based event handling.
 - **Frontend**: A responsive React application styled with Bootstrap.
 - **Containerized Deployment**: Docker and Docker Compose for seamless deployment.
+- **CI/CD Piplines**: CI/CD pipeline for Azure Web App using GitHub Actions.
 
 ## Technologies Used
 - **Backend**: ASP.NET Core, C#
@@ -21,7 +22,7 @@ Play Economy is a comprehensive microservices-based application designed to mana
 
 ## Project Structure
 ```
-NetMicroservicesBasics/
+dotnet-microservices/
 ├── packages/            # Prebuilt NuGet packages
 ├── postman_collections/ # API testing collections
 ├── Play.Catalog/        # Catalog microservice
