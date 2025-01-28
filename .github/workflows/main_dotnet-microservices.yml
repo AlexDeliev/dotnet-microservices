@@ -21,18 +21,27 @@ jobs:
         with:
           dotnet-version: '6.0.x'
 
-      - name: Build with dotnet
-        run: dotnet build --configuration Release
+      # Build and publish Play.Catalog
+      - name: Build and Publish Play.Catalog
+        run: |
+          cd Play.Catalog/src/Play.Catalog.Service
+          dotnet build --configuration Release
+          dotnet publish --configuration Release -o "${{env.DOTNET_ROOT}}/PlayCatalogApp"
 
-      - name: dotnet publish
-        run: dotnet publish -c Release -o "${{env.DOTNET_ROOT}}/myapp"
+      # Build and publish Play.Inventory (example)
+      - name: Build and Publish Play.Inventory
+        run: |
+          cd Play.Inventory/src/Play.Inventory.Service
+          dotnet build --configuration Release
+          dotnet publish --configuration Release -o "${{env.DOTNET_ROOT}}/PlayInventoryApp"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: .net-app
-          path: ${{env.DOTNET_ROOT}}/myapp
-
+          path: |
+            ${{env.DOTNET_ROOT}}/PlayCatalogApp
+            ${{env.DOTNET_ROOT}}/PlayInventoryApp
   deploy:
     runs-on: windows-latest
     needs: build
