@@ -45,7 +45,7 @@ dotnet-microservices/
 1. **Clone the Repository**
    ```bash
    git clone <repository-url>
-   cd NetMicroservicesBasics
+   cd dotnet-microservices
    ```
 
 2. **Restore NuGet Packages**
@@ -55,13 +55,13 @@ dotnet-microservices/
 
 3. **Build and Run Docker Containers**
    ```bash
-   cd source_code/Play.Infra
+   cd dotnet-microservices/Play.Infra
    docker-compose up --build
    ```
 
 4. **Install Frontend Dependencies**
    ```bash
-   cd source_code/Play.Frontend
+   cd dotnet-microservices/Play.Frontend
    npm install
    npm start
    ```
